@@ -17,50 +17,84 @@ const DATA = [
   {
     id: 'id-1',
     title: 'My Profile',
+    Icon: () => (
+      <FontAwesome5 style={{fontSize: 20, marginRight: 30}} name="user" />
+    ),
   },
   {
     id: 'id-2',
     title: 'My Vehicles',
+    Icon: () => (
+      <FontAwesome5 style={{fontSize: 20, marginRight: 30}} name="car" />
+    ),
   },
   {
     id: 'id-3',
     title: 'Service Requests',
+    Icon: () => (
+      <FontAwesome5
+        style={{fontSize: 20, marginRight: 30}}
+        name="clipboard-list"
+      />
+    ),
   },
   {
     id: 'id-4',
     title: 'Notifications',
+    Icon: () => (
+      <FontAwesome5 style={{fontSize: 20, marginRight: 30}} name="bell" />
+    ),
   },
   {
     id: 'id-5',
     title: 'Wallet',
+    Icon: () => (
+      <FontAwesome5 style={{fontSize: 20, marginRight: 30}} name="wallet" />
+    ),
   },
   {
     id: 'id-6',
     title: 'Messages',
+    Icon: () => (
+      <FontAwesome5 style={{fontSize: 20, marginRight: 30}} name="comments" />
+    ),
   },
   {
     id: 'id-7',
     title: 'Active Services',
+    Icon: () => (
+      <FontAwesome5 style={{fontSize: 20, marginRight: 30}} name="cogs" />
+    ),
   },
   {
     id: 'id-8',
     title: 'Contact us',
+    Icon: () => (
+      <FontAwesome5 style={{fontSize: 20, marginRight: 30}} name="envelope" />
+    ),
   },
   {
     id: 'id-9',
     title: 'Privacy Policy',
+    Icon: () => (
+      <FontAwesome5 style={{fontSize: 20, marginRight: 30}} name="file-alt" />
+    ),
   },
   {
     id: 'id-10',
-    title: 'Sign Out',
+    title: <Text style={{color: '#28C5F3'}}>Sign Out</Text>,
+    Icon: () => (
+      <FontAwesome5
+        style={{fontSize: 20, marginRight: 30}}
+        name="sign-out-alt"
+      />
+    ),
   },
 ];
 
-const renderItem = ({item}) => <Item title={item.title} />;
-
-const Item = ({title}) => (
+const renderItem = ({item: {title, Icon}}) => (
   <View style={styles.item}>
-    <FontAwesome5 style={{fontSize: 20, marginRight: 30}} name="user" />
+    <Icon />
     <Text style={styles.title}>{title}</Text>
   </View>
 );
