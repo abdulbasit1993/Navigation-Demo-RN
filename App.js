@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomeScreen from './Screens/HomeScreen';
 import DetailsScreen from './Screens/DetailsScreen';
+import ModalTestScreen from './Screens/ModalTestScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,13 @@ const App = () => {
           }}
         />
         <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen
+          name="ModalTestScreen"
+          component={ModalTestScreen}
+          options={{
+            title: 'Modal Test Screen',
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

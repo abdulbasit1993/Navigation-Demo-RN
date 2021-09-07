@@ -9,6 +9,12 @@ const HomeScreen = ({navigation}) => {
         title="Go to details screen"
         onPress={() => navigation.navigate('Details')}
       />
+      <View style={styles.modalBtn}>
+        <Button
+          title="Go to Modal Test screen"
+          onPress={() => navigation.navigate('ModalTestScreen')}
+        />
+      </View>
     </View>
   );
 };
@@ -20,5 +26,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  modalBtn: {
+    marginTop: 50,
+    borderColor: 'blue',
+    borderWidth: 3,
   },
 });
