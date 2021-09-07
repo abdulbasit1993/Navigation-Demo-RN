@@ -15,6 +15,12 @@ const HomeScreen = ({navigation}) => {
           onPress={() => navigation.navigate('ModalTestScreen')}
         />
       </View>
+      <View style={styles.modalBtn}>
+        <Button
+          title="Go to the Filter Modal screen"
+          onPress={() => navigation.navigate('FilterModalScreen')}
+        />
+      </View>
     </View>
   );
 };
@@ -29,7 +35,5 @@ const styles = StyleSheet.create({
   },
   modalBtn: {
     marginTop: 50,
-    borderColor: 'blue',
-    borderWidth: 3,
   },
 });

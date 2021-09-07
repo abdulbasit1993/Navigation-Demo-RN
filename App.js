@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './Screens/HomeScreen';
 import DetailsScreen from './Screens/DetailsScreen';
 import ModalTestScreen from './Screens/ModalTestScreen';
+import FilterModalScreen from './Screens/FilterModalScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,13 @@ const App = () => {
           component={ModalTestScreen}
           options={{
             title: 'Modal Test Screen',
+          }}
+        />
+        <Stack.Screen
+          name="FilterModalScreen"
+          component={FilterModalScreen}
+          options={{
+            title: 'Filter Modal Screen',
           }}
         />
       </Stack.Navigator>
