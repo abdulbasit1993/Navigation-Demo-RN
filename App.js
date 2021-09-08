@@ -6,6 +6,7 @@ import HomeScreen from './Screens/HomeScreen';
 import DetailsScreen from './Screens/DetailsScreen';
 import ModalTestScreen from './Screens/ModalTestScreen';
 import FilterModalScreen from './Screens/FilterModalScreen';
+import SandboxScreen from './Screens/SandboxScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,14 @@ const App = () => {
             fontWeight: 'bold',
           },
         }}>
+        <Stack.Screen
+          name="SandboxScreen"
+          component={SandboxScreen}
+          options={{
+            title: 'Demo Screen',
+          }}
+        />
+
         <Stack.Screen
           name="Home"
           component={HomeScreen}

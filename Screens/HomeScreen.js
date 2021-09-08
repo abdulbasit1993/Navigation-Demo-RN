@@ -21,6 +21,12 @@ const HomeScreen = ({navigation}) => {
           onPress={() => navigation.navigate('FilterModalScreen')}
         />
       </View>
+      <View style={styles.modalBtn}>
+        <Button
+          title="Go to Demo Screen"
+          onPress={() => navigation.navigate('SandboxScreen')}
+        />
+      </View>
     </View>
   );
 };

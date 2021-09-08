@@ -4,9 +4,7 @@ import {
   Text,
   View,
   Button,
-  SafeAreaView,
-  SectionList,
-  StatusBar,
+  FlatList,
   Dimensions,
 } from 'react-native';
 import Modal from 'react-native-modal';
@@ -15,32 +13,26 @@ const {width: screenWidth} = Dimensions.get('screen');
 
 const DATA = [
   {
-    title: 'Workshop Category',
-    data: ['BodyShops', 'Electric Cars', 'Performance Shops'],
+    id: 'item-1',
+    heading: 'Workshop Category',
+    isChecked: false,
   },
   {
-    title: 'Vehicle Category',
-    data: ['Cars', 'Trucks', 'Motorbikes'],
-  },
-  {
-    title: 'Services',
-    data: [
-      'Accident Repair',
-      'AC System Diagnosis',
-      'Car Polishing / Detailing',
-      'Electric / Hybrid System Repair',
-      'General Mechanical Work',
-    ],
-  },
-  {
-    title: 'Brands',
-    data: ['FORD', 'BMW', 'AUDI', 'JAGUAR', 'FERRARI', 'LAMBORGHINI'],
+    id: 'item-2',
+    heading: 'Vehicle Category',
   },
 ];
 
-const Item = ({title}) => (
+// Code for multiple select buttons:
+// const renderItem = ({item: {heading}}) => (
+//   <View style={styles.item, { backgroundColor: isChecked ? "#000" : "#fff"}}>
+//     <Text style={styles.heading}>{heading}</Text>
+//   </View>
+// );
+
+const renderItem = ({item: {heading}}) => (
   <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
+    <Text style={styles.heading}>{heading}</Text>
   </View>
 );
 
@@ -74,23 +66,13 @@ function FilterModalScreen() {
         backdropTransitionOutTiming={500}
         onBackdropPress={() => setModalVisible(false)}
         style={{alignItems: 'flex-end', margin: 0}}>
-        <SafeAreaView
-          style={{
-            backgroundColor: 'white',
-            flex: 1,
-            paddingTop: 30,
-            width: screenWidth * 0.7,
-          }}>
-          <SectionList
-            style={styles.container}
-            sections={DATA}
-            keyExtractor={(item, index) => item + index}
-            renderItem={({item}) => <Item title={item} />}
-            renderSectionHeader={({section: {title, data}}) => (
-              <Text style={styles.header}>{title}</Text>
-            )}
+        <View style={styles.container}>
+          <FlatList
+            data={DATA}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
           />
-        </SafeAreaView>
+        </View>
       </Modal>
     </View>
   );
@@ -100,14 +82,8 @@ export default FilterModalScreen;
 
 const styles = StyleSheet.create({
   container: {},
-  item: {
-    backgroundColor: 'transparent',
-    padding: 10,
-    marginVertical: 10,
-    borderStyle: 'solid',
-    borderColor: '#1B4353',
-    borderWidth: 2,
-    borderRadius: 50,
+  heading: {
+    fontSize: 23,
   },
   header: {
     fontSize: 22,
