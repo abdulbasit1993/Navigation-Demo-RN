@@ -46,13 +46,13 @@ const App = () => {
             title: 'Filter Modal Screen',
           }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="SandboxScreen"
           component={SandboxScreen}
           options={{
             title: 'Demo Screen',
           }}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

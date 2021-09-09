@@ -151,11 +151,9 @@ function FilterModalScreen() {
                 const data = [...prev];
                 // console.log(prev);
                 console.log(prev);
-                let dat = setTimeout(() => {
-                  data.map((item, index) =>
-                    item.data.map(v => (v.isCheck = false)),
-                  );
-                }, 5000);
+                let dat = data.map((item, index) =>
+                  item.data.map(v => (v.isCheck = false)),
+                );
                 console.log(prev);
                 return [...prev];
               });
