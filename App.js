@@ -24,20 +24,13 @@ const App = () => {
           },
         }}>
         <Stack.Screen
-          name="SandboxScreen"
-          component={SandboxScreen}
-          options={{
-            title: 'Demo Screen',
-          }}
-        />
-
-        <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={{
             title: 'Overview',
           }}
         />
+
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen
           name="ModalTestScreen"
@@ -51,6 +44,13 @@ const App = () => {
           component={FilterModalScreen}
           options={{
             title: 'Filter Modal Screen',
+          }}
+        />
+        <Stack.Screen
+          name="SandboxScreen"
+          component={SandboxScreen}
+          options={{
+            title: 'Demo Screen',
           }}
         />
       </Stack.Navigator>

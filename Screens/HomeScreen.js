@@ -4,7 +4,7 @@ import {Text, View, Button, StyleSheet} from 'react-native';
 const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      <Text style={{fontSize: 18, marginBottom: 10}}>Home Screen</Text>
       <Button
         title="Go to details screen"
         onPress={() => navigation.navigate('Details')}
@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   modalBtn: {
-    marginTop: 50,
+    marginTop: 30,
   },
 });

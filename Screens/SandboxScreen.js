@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,114 +9,148 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import Modal from 'react-native-modal';
+// import Modal from 'react-native-modal';
 
 const {width: screenWidth} = Dimensions.get('screen');
 // screen width Multiply by 0.8
-
-const Footer = () => {
-  return (
-    <View>
-      <Text style={{color: '#fff', fontSize: 20}}>Reviews</Text>
-      <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 20}}>
-        <Image
-          source={require('../assets/five-stars.png')}
-          style={{width: 90, height: 18}}
-        />
-        <Text style={{marginLeft: 10}}>& Up</Text>
-      </View>
-      <View style={{flexDirection: 'row', marginTop: 30}}>
-        <TouchableOpacity
-          style={{
-            backgroundColor: '#525252',
-            width: 200,
-            paddingTop: 20,
-            paddingBottom: 20,
-            alignItems: 'center',
-            borderRadius: 10,
-          }}>
-          <Text>Reset</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: '#00ACED',
-            width: 200,
-            alignItems: 'center',
-            paddingTop: 20,
-            paddingBottom: 20,
-            borderRadius: 10,
-          }}>
-          <Text>Apply</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-};
-
-const renderItem = ({item: {title, data}}) => (
-  <View>
-    <Text style={styles.headingText}>{title}</Text>
-    <View style={styles.item}>
-      {data.map(el => (
-        <TouchableOpacity
-          style={[
-            {
-              backgroundColor: el.isCheck ? '#00ACED' : 'transparent',
-              padding: 20,
-              borderColor: '#185268',
-              borderWidth: 2,
-              borderRadius: 40,
-            },
-          ]}>
-          <Text style={styles.btnText}>{el.name}</Text>
-        </TouchableOpacity>
-      ))}
-    </View>
-  </View>
-);
 
 const SandboxScreen = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [data, setData] = useState([
     {
+      key: 'id-1',
       title: 'Workshop Category',
       data: [
-        {name: 'BodyShops', isCheck: false},
-        {name: 'Electric Cars', isCheck: true},
-        {name: 'Performance Shops', isCheck: false},
+        {name: 'BodyShops', isCheck: false, key: 'id-5'},
+        {name: 'Electric Cars', isCheck: true, key: 'id-6'},
+        {name: 'Performance Shops', isCheck: false, key: 'id-7'},
       ],
     },
     {
+      key: 'id-2',
       title: 'Vehicle Category',
       data: [
-        {name: 'Cars', isCheck: false},
-        {name: 'Trucks', isCheck: true},
-        {name: 'Motorbikes', isCheck: false},
+        {name: 'Cars', isCheck: false, key: 'id-8'},
+        {name: 'Trucks', isCheck: true, key: 'id-9'},
+        {name: 'Motorbikes', isCheck: false, key: 'id-10'},
       ],
     },
     {
+      key: 'id-3',
       title: 'Services',
       data: [
-        {name: 'Accident Repair', isCheck: false},
-        {name: 'AC System Diagnosis', isCheck: false},
-        {name: 'Car Polishing / Detailing', isCheck: false},
-        {name: 'Electric / Hybrid System Repair', isCheck: true},
-        {name: 'General Mechanical Work', isCheck: true},
+        {name: 'Accident Repair', isCheck: false, key: 'id-11'},
+        {name: 'AC System Diagnosis', isCheck: false, key: 'id-12'},
+        {name: 'Car Polishing / Detailing', isCheck: false, key: 'id-13'},
+        {
+          name: 'Electric / Hybrid System Repair',
+          isCheck: true,
+          key: 'id-14',
+        },
+        {name: 'General Mechanical Work', isCheck: true, key: 'id-15'},
       ],
     },
     {
+      key: 'id-4',
       title: 'Brands',
       data: [
-        {name: 'FORD', isCheck: false},
-        {name: 'BMW', isCheck: false},
-        {name: 'BMW', isCheck: false},
-        {name: 'AUDI', isCheck: false},
-        {name: 'JAGUAR', isCheck: false},
-        {name: 'FERRARI', isCheck: true},
-        {name: 'LAMBORGHINI', isCheck: false},
+        {name: 'FORD', isCheck: false, key: 'id-16'},
+        {name: 'BMW', isCheck: false, key: 'id-17'},
+        {name: 'BMW', isCheck: false, key: 'id-18'},
+        {name: 'AUDI', isCheck: false, key: 'id-19'},
+        {name: 'JAGUAR', isCheck: false, key: 'id-20'},
+        {name: 'FERRARI', isCheck: true, key: 'id-21'},
+        {name: 'LAMBORGHINI', isCheck: false, key: 'id-22'},
       ],
     },
   ]);
+
+  const Footer = () => {
+    return (
+      <View>
+        <Text style={{color: '#fff', fontSize: 20}}>Reviews</Text>
+        <View
+          style={{flexDirection: 'row', alignItems: 'center', marginTop: 20}}>
+          <Image
+            source={require('../assets/five-stars.png')}
+            style={{width: 90, height: 18}}
+          />
+          <Text style={{marginLeft: 10}}>& Up</Text>
+        </View>
+        <View style={{flexDirection: 'row', marginTop: 30}}>
+          <TouchableOpacity
+            onPress={() => {
+              setData(prev => {
+                //Here I have update your all isCheck prop to false;
+                let dat = prev.map((item, index) =>
+                  item.data.map(v => (v.isCheck = false)),
+                );
+                return [...prev];
+              });
+            }}
+            style={{
+              backgroundColor: '#525252',
+              width: 200,
+              paddingTop: 20,
+              paddingBottom: 20,
+              alignItems: 'center',
+              borderTopLeftRadius: 22,
+            }}>
+            <Text>Reset</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              //You can call an API to store your results or directly save the results in your Storage.
+              alert('Results has been applied!');
+            }}
+            style={{
+              backgroundColor: '#00ACED',
+              width: 200,
+              alignItems: 'center',
+              paddingTop: 20,
+              paddingBottom: 20,
+              borderTopRightRadius: 23,
+            }}>
+            <Text>Apply</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  };
+
+  const renderItem = ({item: {title, data, key}, index}) => (
+    <View>
+      <Text style={styles.headingText}>{title}</Text>
+      <View style={styles.item}>
+        {data.map(el => (
+          <TouchableOpacity
+            onPress={() => {
+              setData(prev => {
+                el.isCheck = !el.isCheck; // `!` means if a value is true then make it false else make it true;
+                let dat = [el, ...prev[index].data];
+                // Here I'm spreading the both objects and merging the data;
+                return [...prev];
+                // Retruned the updated values by spreading it.
+              });
+            }}
+            key={el.key}
+            style={[
+              {
+                backgroundColor: el.isCheck ? '#00ACED' : 'transparent',
+                padding: 20,
+                borderColor: '#185268',
+                borderWidth: 2,
+                borderRadius: 40,
+                marginBottom: 10,
+                marginRight: 10,
+              },
+            ]}>
+            <Text style={styles.btnText}>{el.name}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </View>
+  );
 
   const toggleModal = () => {
     setModalVisible(prevState => !prevState);
@@ -134,7 +168,7 @@ const SandboxScreen = () => {
         <FlatList
           data={data}
           renderItem={renderItem}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.key}
           ListFooterComponent={Footer}
         />
       </View>
